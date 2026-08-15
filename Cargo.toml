@@ -1,0 +1,36 @@
+[package]
+name = "mcpg-plugin-backend-net-core"
+version = "0.1.0-beta.13"
+license = "Apache-2.0"
+edition = "2024"
+description = """
+Shared HTTP-over-reqwest core for mcpg's network backend plugins
+(http, grpc, graphql). Owns the per-credential `reqwest::Client`
+cache (`ClientRegistry`), the DNS-rebinding / SSRF guard
+(`build_http_client`), the per-call request/response execution
+primitives (`exec`), and the reusable downstream-error retry-guidance
+shaping (`retry`). A pure rlib — it is NOT a loadable plugin (no
+plugin.yaml); the network backend cdylibs link it at build time so
+the security-sensitive SSRF guard lives in exactly one place.
+"""
+
+[dependencies]
+mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.13", version = "=0.1.0-beta.13" }
+# CEL template compilation/evaluation for per-call url + header
+# resolution (DynamicValue / ExprContext / validate_header_value).
+mcpg-expr            = { git = "https://github.com/mcpg-dev/mcpg-expr", tag = "v0.1.0-beta.13", version = "=0.1.0-beta.13" }
+anyhow         = "1"
+blake3         = "1"
+bytes          = "1"
+futures        = "0.3"
+metrics        = "0.24"
+reqwest        = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+serde          = { version = "1", features = ["derive"] }
+serde_json     = "1"
+tokio          = { version = "1", features = ["sync", "rt", "rt-multi-thread", "macros", "time", "net"] }
+tokio-util     = "0.7"
+tracing        = "0.1"
+url            = "2"
+
+[dev-dependencies]
+tokio    = { version = "1", features = ["macros", "rt", "rt-multi-thread", "net", "io-util", "time"] }
