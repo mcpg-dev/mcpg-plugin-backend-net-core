@@ -1,6 +1,6 @@
 [package]
 name = "mcpg-plugin-backend-net-core"
-version = "0.1.0-beta.15"
+version = "0.1.0-beta.16"
 license = "Apache-2.0"
 edition = "2024"
 description = """
@@ -15,10 +15,10 @@ the security-sensitive SSRF guard lives in exactly one place.
 """
 
 [dependencies]
-mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.15", version = "=0.1.0-beta.15" }
+mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.16", version = "=0.1.0-beta.16" }
 # CEL template compilation/evaluation for per-call url + header
 # resolution (DynamicValue / ExprContext / validate_header_value).
-mcpg-expr            = { git = "https://github.com/mcpg-dev/mcpg-expr", tag = "v0.1.0-beta.15", version = "=0.1.0-beta.15" }
+mcpg-expr            = { git = "https://github.com/mcpg-dev/mcpg-expr", tag = "v0.1.0-beta.16", version = "=0.1.0-beta.16" }
 anyhow         = "1"
 blake3         = "1"
 bytes          = "1"
