@@ -1,6 +1,6 @@
 [package]
 name = "mcpg-plugin-backend-net-core"
-version = "0.1.0-beta.30"
+version = "0.1.0-beta.36"
 license = "Apache-2.0"
 edition = "2024"
 description = """
@@ -15,16 +15,16 @@ the security-sensitive SSRF guard lives in exactly one place.
 """
 
 [dependencies]
-mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.29", version = "=0.1.0-beta.29" }
+mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.35", version = "=0.1.0-beta.35" }
 # CEL template compilation/evaluation for per-call url + header
 # resolution (DynamicValue / ExprContext / validate_header_value).
-mcpg-expr            = { git = "https://github.com/mcpg-dev/mcpg-expr", tag = "v0.1.0-beta.29", version = "=0.1.0-beta.29" }
+mcpg-expr            = { git = "https://github.com/mcpg-dev/mcpg-expr", tag = "v0.1.0-beta.35", version = "=0.1.0-beta.35" }
 anyhow         = "1"
 blake3         = "1"
 bytes          = "1"
 futures        = "0.3"
 metrics        = "0.24"
-reqwest        = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+reqwest        = { version = "0.13", default-features = false, features = ["json", "rustls", "stream"] }
 serde          = { version = "1", features = ["derive"] }
 serde_json     = "1"
 tokio          = { version = "1", features = ["sync", "rt", "rt-multi-thread", "macros", "time", "net"] }
