@@ -206,7 +206,7 @@ pub async fn execute_http_call(
     let resp = req
         .send()
         .await
-        .map_err(|e| format!("HTTP request failed: {e}"))?;
+        .map_err(|e| format!("HTTP request failed: {}", e.without_url()))?;
 
     let status = resp.status();
     let content_type = resp
@@ -262,7 +262,7 @@ pub async fn read_response_with_limit(
     let mut buf: Vec<u8> = Vec::new();
     let mut truncated = false;
     while let Some(chunk) = stream.next().await {
-        let chunk = chunk.map_err(|e| format!("HTTP body read failed: {e}"))?;
+        let chunk = chunk.map_err(|e| format!("HTTP body read failed: {}", e.without_url()))?;
         if buf.len() >= limit {
             truncated = true;
             continue;
@@ -501,7 +501,7 @@ pub async fn start_http_call_streaming(
     let resp = req
         .send()
         .await
-        .map_err(|e| format!("HTTP request failed: {e}"))?;
+        .map_err(|e| format!("HTTP request failed: {}", e.without_url()))?;
 
     let status = resp.status();
     let content_type = resp
